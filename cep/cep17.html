@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.2.0-31-gefd3b39)',
+        VERSION:     'b&#39;()&#39;',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -263,7 +263,7 @@ resources to be transacted in a simulation.</p>
 <span class="k">typedef</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ResourceType</span><span class="p">;</span>
 
 <span class="k">class</span> <span class="nc">Resource</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Resource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
 
   <span class="k">virtual</span> <span class="o">~</span><span class="n">Resource</span><span class="p">()</span> <span class="p">{</span> <span class="p">};</span>
@@ -359,7 +359,7 @@ operations performed will be recorded. Usage examples:</p>
 </div>
 <p>Proposed material class interface:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Material</span><span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Material</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
   <span class="k">static</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">kType</span><span class="p">;</span>
 
@@ -408,7 +408,7 @@ operations performed will be recorded. Usage examples:</p>
 <p>Implements the Resource class interface in a simple way usable for things
 like: bananas, man-hours, water, buying power, etc.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">GenericResource</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Resource</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">GenericResource</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
   <span class="k">static</span> <span class="k">const</span> <span class="n">ResourceType</span> <span class="n">kType</span><span class="p">;</span>
 
@@ -493,7 +493,7 @@ or other places.</p>
 
 <span class="c1">// Represents an immutable nuclear material composition</span>
 <span class="k">class</span> <span class="nc">Composition</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="k">typedef</span> <span class="n">boost</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="n">Composition</span><span class="o">&gt;</span> <span class="n">Ptr</span><span class="p">;</span>
 
   <span class="k">static</span> <span class="n">Ptr</span> <span class="nf">CreateAtom</span><span class="p">(</span><span class="n">CompMap</span> <span class="n">v</span><span class="p">);</span>
@@ -558,7 +558,7 @@ needed.</p>
 information about a material they could ever reasonably need. The interface is
 designed to grow organically as needed.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">MatQuery</span> <span class="p">{</span>
-  <span class="nl">public:</span>
+  <span class="k">public</span><span class="o">:</span>
     <span class="n">MatQuery</span><span class="p">(</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">m</span><span class="p">);</span>
 
     <span class="c1">/// Convenience constructor that auto-casts a Resource::Ptr to a</span>
@@ -590,7 +590,7 @@ responsible for loading recipes from xml input and serving them up simulation
 wide.  Agents are also allowed to register their own compositions manually.
 RecipeLibrary interface becomes:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">RecipeLibrary</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="cm">/**</span>
 <span class="cm">     Gives all simulation objects global access to the RecipeLibrary by</span>
 <span class="cm">     returning a pointer to it.</span>
@@ -894,7 +894,7 @@ here <a class="reference external" href="https://github.com/cyclus/cyclus/issues
 
     <div class="footer">
         &copy; Copyright 2012-2014, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jan 13, 2015.
+      Last updated on Jan 14, 2015.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

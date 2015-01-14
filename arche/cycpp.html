@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.2.0-31-gefd3b39)',
+        VERSION:     'b&#39;()&#39;',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -404,13 +404,13 @@ member functions that <tt class="docutils literal"><span class="pre">cycpp</span
 you ever need.  For example, an agent that does nothing and has no state variables
 would be completely defined by the following thanks to the prime directive:</p>
 <p><strong>The prime directive example:</strong></p>
-<div class="highlight-c++"><div class="highlight"><pre>class DoNothingCongress : public cyclus::Institution {
- public:
-  DoNothingCongress(cyclus::Context* ctx) {};
-  virtual ~DoNothingCongress() {};
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">DoNothingCongress</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Institution</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">DoNothingCongress</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">DoNothingCongress</span><span class="p">()</span> <span class="p">{};</span>
 
-  #pragma cyclus
-};
+  <span class="cp">#pragma cyclus</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <br /><hr class="docutils" />
@@ -537,25 +537,25 @@ prime directive.</p>
 <p>As a simple example, consider a reactor model that has three state variables:
 a flux, a power level, and a flag for whether it is shutdown or not.
 This could be implemented as follows:</p>
-<div class="highlight-c++"><div class="highlight"><pre>class Reactor : public cyclus::Facility {
- public:
-  Reactor(cyclus::Context* ctx) {};
-  virtual ~Reactor() {};
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Reactor</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">Reactor</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">)</span> <span class="p">{};</span>
+  <span class="k">virtual</span> <span class="o">~</span><span class="n">Reactor</span><span class="p">()</span> <span class="p">{};</span>
 
-  #pragma cyclus
+  <span class="cp">#pragma cyclus</span>
 
- private:
-  #pragma cyclus var {&#39;default&#39;: 4e14, \
-                      &#39;doc&#39;: &#39;the core-average flux&#39;, \
-                      &#39;units&#39;: &#39;n/cm2/2&#39;}
-  double flux;
+ <span class="k">private</span><span class="o">:</span>
+  <span class="cp">#pragma cyclus var {&#39;default&#39;: 4e14, \</span>
+<span class="cp">                      &#39;doc&#39;: &#39;the core-average flux&#39;, \</span>
+<span class="cp">                      &#39;units&#39;: &#39;n/cm2/2&#39;}</span>
+  <span class="kt">double</span> <span class="n">flux</span><span class="p">;</span>
 
-  #pragma cyclus var {&#39;default&#39;: 1000, &#39;units&#39;: &#39;MWe&#39;}
-  float power;
+  <span class="cp">#pragma cyclus var {&#39;default&#39;: 1000, &#39;units&#39;: &#39;MWe&#39;}</span>
+  <span class="kt">float</span> <span class="n">power</span><span class="p">;</span>
 
-  #pragma cyclus var {&#39;doc&#39;: &#39;Are we operating?&#39;}
-  bool shutdown;
-};
+  <span class="cp">#pragma cyclus var {&#39;doc&#39;: &#39;Are we operating?&#39;}</span>
+  <span class="kt">bool</span> <span class="n">shutdown</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Note that the state variables may be private or protected if desired.
@@ -585,15 +585,15 @@ Furthermore, somewhere out in global scope lives the Spy&#8217;s arch-nemesis cl
 <tt class="docutils literal"><span class="pre">Enemy</span></tt>.</p>
 <p>The first rule of scoping is that two state variables on the same class
 share the same scope.  Thus they can directly refer to each other.</p>
-<div class="highlight-c++"><div class="highlight"><pre>namespace mi6 {
-class Spy {
-  #pragma cyclus var {&quot;default&quot;: 7}
-  int id;
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">mi6</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">Spy</span> <span class="p">{</span>
+  <span class="cp">#pragma cyclus var {&quot;default&quot;: 7}</span>
+  <span class="kt">int</span> <span class="n">id</span><span class="p">;</span>
 
-  #pragma cyclus var {&quot;default&quot;: &quot;James Bond, {0:0&gt;3}&quot;.format(id[&#39;default&#39;])}
-  std::string name;
-};
-}; // namespace mi6
+  <span class="cp">#pragma cyclus var {&quot;default&quot;: &quot;James Bond, {0:0&gt;3}&quot;.format(id[&#39;default&#39;])}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">};</span> <span class="c1">// namespace mi6</span>
 </pre></div>
 </div>
 <p>In the above, <tt class="docutils literal"><span class="pre">id</span></tt> is used to help define the annotations for <tt class="docutils literal"><span class="pre">name</span></tt>.
@@ -603,12 +603,12 @@ This is why we could look up <tt class="docutils literal"><span class="pre">id['
 <p>The second rule of scoping is that you are allowed to look into the annotations
 of other classes.  However, to do so you must specifiy the class you are looking
 into.  Looking at our spy&#8217;s friend</p>
-<div class="highlight-c++"><div class="highlight"><pre>namespace mi6 {
-class Friend {
-  #pragma cyclus var {&quot;doc&quot;: &quot;Normally helps {0}&quot;.format(Spy.name[&#39;default&#39;])}
-  std::string help_first;
-};
-}; // namespace mi6
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">namespace</span> <span class="n">mi6</span> <span class="p">{</span>
+<span class="k">class</span> <span class="nc">Friend</span> <span class="p">{</span>
+  <span class="cp">#pragma cyclus var {&quot;doc&quot;: &quot;Normally helps {0}&quot;.format(Spy.name[&#39;default&#39;])}</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">help_first</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">};</span> <span class="c1">// namespace mi6</span>
 </pre></div>
 </div>
 <p>Here, to access the annotations for Spy&#8217;s name we had to use <tt class="docutils literal"><span class="pre">Spy.name</span></tt>,
@@ -618,10 +618,10 @@ access control (public, private, or protected).</p>
 namespace, we must first drill into that namespace. For example, the spy&#8217;s
 main enemy is not part of <tt class="docutils literal"><span class="pre">mi6</span></tt>.  Thus to access the spy&#8217;s name annotations,
 the enemy must write <tt class="docutils literal"><span class="pre">mi6.Spy.name</span></tt>. For example:</p>
-<div class="highlight-c++"><div class="highlight"><pre>class Enemy {
-    #pragma cyclus var {&#39;default&#39;: mi6.Spy.name[&#39;default&#39;]}
-    std::string nemesis;
-};
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">Enemy</span> <span class="p">{</span>
+    <span class="cp">#pragma cyclus var {&#39;default&#39;: mi6.Spy.name[&#39;default&#39;]}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">nemesis</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </div>
@@ -669,15 +669,15 @@ that you may perform any operation before &amp; after the directive!</p>
 on the Reactor agent is always snapshotted to the database as the value 42.
 However, we did not want to permanently alter the value of this variable.
 This could be achieved through the following pattern:</p>
-<div class="highlight-c++"><div class="highlight"><pre>void Reactor::Snapshot(cyclus::DbInit di) {
-  double real_flux = flux;  // copy the existing flux value.
-  flux = 42;  // set the value to wat we want temporarily
+<div class="highlight-c++"><div class="highlight"><pre><span class="kt">void</span> <span class="n">Reactor</span><span class="o">::</span><span class="n">Snapshot</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">DbInit</span> <span class="n">di</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">double</span> <span class="n">real_flux</span> <span class="o">=</span> <span class="n">flux</span><span class="p">;</span>  <span class="c1">// copy the existing flux value.</span>
+  <span class="n">flux</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>  <span class="c1">// set the value to wat we want temporarily</span>
 
-  // fill in the code generated implementation of Shapshop()
-  #prama cyclus impl snapshot Reactor
+  <span class="c1">// fill in the code generated implementation of Shapshop()</span>
+  <span class="cp">#prama cyclus impl snapshot Reactor</span>
 
-  flux = real_flux;  // reset the flux
-}
+  <span class="n">flux</span> <span class="o">=</span> <span class="n">real_flux</span><span class="p">;</span>  <span class="c1">// reset the flux</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>There are likely much more legitimate uses for this feature. For a complete
@@ -875,7 +875,7 @@ in much the same way.</p>
 
     <div class="footer">
         &copy; Copyright 2012-2014, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jan 13, 2015.
+      Last updated on Jan 14, 2015.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.2.0-31-gefd3b39)',
+        VERSION:     'b&#39;()&#39;',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -172,7 +172,7 @@ offering in response to the request.</p>
 fulfill orders is constrained by the total amount of a given nuclide. A valid
 <tt class="docutils literal"><span class="pre">GetMatlBids</span></tt> implementation would then be:</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">NucConverter</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Converter</span><span class="o">&lt;</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">&gt;</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="n">NucConverter</span><span class="p">(</span><span class="kt">int</span> <span class="n">nuc</span><span class="p">)</span> <span class="o">:</span> <span class="n">nuc_</span><span class="p">(</span><span class="n">nuc</span><span class="p">)</span> <span class="p">{};</span>
 
   <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">convert</span><span class="p">(</span>
@@ -183,7 +183,7 @@ fulfill orders is constrained by the total amount of a given nuclide. A valid
     <span class="k">return</span> <span class="n">mq</span><span class="p">.</span><span class="n">mass</span><span class="p">(</span><span class="n">nuc_</span><span class="p">);</span>
   <span class="p">}</span>
 
- <span class="nl">private:</span>
+ <span class="k">private</span><span class="o">:</span>
   <span class="kt">int</span> <span class="n">nuc_</span><span class="p">;</span>
 <span class="p">};</span>
 
@@ -438,7 +438,7 @@ implements <tt class="docutils literal"><span class="pre">GetMatlTrades</span></
 example, consider an interface that helps determines preferences based on
 the equality of the parent of a <tt class="docutils literal"><span class="pre">cyclus::Agent</span></tt>.</p>
 <div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">PrefGetter</span> <span class="p">{</span>
- <span class="nl">public:</span>
+ <span class="k">public</span><span class="o">:</span>
   <span class="kt">double</span> <span class="n">GetPref</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span> <span class="n">mine</span><span class="p">,</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Agent</span><span class="o">*</span> <span class="n">yours</span><span class="p">)</span> <span class="p">{</span>
      <span class="k">return</span> <span class="p">(</span><span class="n">mine</span> <span class="o">==</span> <span class="n">yours</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mf">0.5</span><span class="p">;</span>
   <span class="p">}</span>
@@ -498,14 +498,14 @@ stopping an archetype developer from implementing logic that is specific to a
 implemented archetype.</p>
 <p>For example, take a facility that informs a trader what composition of material
 it wants given another facility&#8217;s inventory.</p>
-<div class="highlight-c++"><div class="highlight"><pre>class TradeInformer: public cyclus::Facility {
- public:
-  #pragma cyclus
+<div class="highlight-c++"><div class="highlight"><pre><span class="k">class</span> <span class="nc">TradeInformer</span><span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="cp">#pragma cyclus</span>
 
-  cyclus::Material::Ptr IdealMatl(const cyclus::toolkit::ResBuf&amp; buffer) {
-     // provide whatever implementation is desired
-  }
-};
+  <span class="n">cyclus</span><span class="o">::</span><span class="n">Material</span><span class="o">::</span><span class="n">Ptr</span> <span class="n">IdealMatl</span><span class="p">(</span><span class="k">const</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">toolkit</span><span class="o">::</span><span class="n">ResBuf</span><span class="o">&amp;</span> <span class="n">buffer</span><span class="p">)</span> <span class="p">{</span>
+     <span class="c1">// provide whatever implementation is desired</span>
+  <span class="p">}</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>A provider of material can then implement its <tt class="docutils literal"><span class="pre">GetMatlBids</span></tt> as follows:</p>
@@ -684,7 +684,7 @@ it wants given another facility&#8217;s inventory.</p>
 
     <div class="footer">
         &copy; Copyright 2012-2014, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jan 13, 2015.
+      Last updated on Jan 14, 2015.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");

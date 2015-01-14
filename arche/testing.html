@@ -17,7 +17,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '(1.2.0-31-gefd3b39)',
+        VERSION:     'b&#39;()&#39;',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -150,26 +150,26 @@ track of how many <a class="reference internal" href="../basics/glossary.html#te
 install them on your system.</p>
 <p>Make a file called <tt class="docutils literal"><span class="pre">tick_tracker.h</span></tt> in the <tt class="docutils literal"><span class="pre">src</span></tt> directory that has the
 following lines:</p>
-<div class="highlight-cpp"><div class="highlight"><pre>#include &quot;cyclus.h&quot;
+<div class="highlight-cpp"><div class="highlight"><pre><span class="cp">#include &quot;cyclus.h&quot;</span>
 
-class TickTracker : public cyclus::Facility {
- public:
-  TickTracker(cyclus::Context* ctx);
+<span class="k">class</span> <span class="nc">TickTracker</span> <span class="o">:</span> <span class="k">public</span> <span class="n">cyclus</span><span class="o">::</span><span class="n">Facility</span> <span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+  <span class="n">TickTracker</span><span class="p">(</span><span class="n">cyclus</span><span class="o">::</span><span class="n">Context</span><span class="o">*</span> <span class="n">ctx</span><span class="p">);</span>
 
-  #pragma cyclus
+  <span class="cp">#pragma cyclus</span>
 
-  /// increments n_ticks
-  virtual void Tick();
+  <span class="c1">/// increments n_ticks</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tick</span><span class="p">();</span>
 
-  /// no-op
-  virtual void Tock() {};
+  <span class="c1">/// no-op</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">Tock</span><span class="p">()</span> <span class="p">{};</span>
 
-  /// query now many ticks the agent has experienced
-  inline int n_ticks() const {return n_ticks_;}
+  <span class="c1">/// query now many ticks the agent has experienced</span>
+  <span class="kr">inline</span> <span class="kt">int</span> <span class="n">n_ticks</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">n_ticks_</span><span class="p">;}</span>
 
- private:
-  int n_ticks_;
-};
+ <span class="k">private</span><span class="o">:</span>
+  <span class="kt">int</span> <span class="n">n_ticks_</span><span class="p">;</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 <p>Next, make a file called <tt class="docutils literal"><span class="pre">tick_tracker.cc</span></tt> in the <tt class="docutils literal"><span class="pre">src</span></tt> directory that has the
@@ -281,7 +281,7 @@ particularly helpful for debugging and verifying your archetype&#8217;s behavior
 with respect to resource exchange.  To turn on this debugging, simply run
 cyclus with the environment variable <tt class="docutils literal"><span class="pre">CYCLUS_DEBUG_DRE</span></tt> set to any non-empty
 value:</p>
-<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ CYCLUS_DEBUG_DRE</span><span class="o">=</span>1 cyclus my-sim.xml
+<div class="highlight-bash"><div class="highlight"><pre><span class="nv">$ CYCLUS_DEBUG_DRE</span><span class="o">=</span><span class="m">1</span> cyclus my-sim.xml
 </pre></div>
 </div>
 <p>The database will then contain two extra tables with several columns each:</p>
@@ -433,7 +433,7 @@ to those of the corresponding request.</p>
 
     <div class="footer">
         &copy; Copyright 2012-2014, University of Wisconsin Computational Nuclear Engineering Research Group.
-      Last updated on Jan 13, 2015.
+      Last updated on Jan 14, 2015.
     </div><script type="text/javascript">
     if(ga_enabled){
         document.write("<div class=\"footer\">This page uses <a href=\"http://analytics.google.com\">Google Analytics</a> to collect statistics. ");
