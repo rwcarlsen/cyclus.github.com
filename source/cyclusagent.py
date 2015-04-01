@@ -42,9 +42,14 @@ elif sys.version_info[0] >= 3:
     STRING_TYPES = (str,)
     IS_PY3 = True
 
-PRIMITIVES = {'bool', 'int', 'float', 'double', 'std::string', 'cyclus::Blob', 
-              'boost::uuids::uuid', 'cyclus::toolkit::ResourceBuff',
-              'cyclus::Material', 'cyclus::Resource', 'cyclus::Product'}
+def contains_resbuf(type_str):
+    bufs = ('cyclus::toolkit::ResBuf',
+            'cyclus::toolkit::ResMap',
+            'cyclus::toolkit::ResourceBuff')
+    for buf in bufs:
+        if buf in type_str:
+            return True
+    return False
 
 def ensure_tuple_or_str(x):
     if isinstance(x, STRING_TYPES):
@@ -54,7 +59,7 @@ def ensure_tuple_or_str(x):
 
 def type_to_str(t):
     t = ensure_tuple_or_str(t)
-    if t in PRIMITIVES:
+    if isinstance(t, STRING_TYPES):
         return t
     else:
         s = t[0] + '<'
@@ -142,6 +147,8 @@ class CyclusAgent(Directive):
         for name, info in vars.items():
             if isinstance(info, STRING_TYPES):
                 # must be an alias entry - skip it
+                continue
+            elif contains_resbuf(type_to_str(info['type'])):
                 continue
 
             alias = info.get('alias', name)
