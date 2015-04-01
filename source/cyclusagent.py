@@ -50,7 +50,7 @@ def ensure_tuple_or_str(x):
     if isinstance(x, STRING_TYPES):
         return x
     else:
-        return tuple(x)
+        return tuple([ensure_tuple_or_str(elem) for elem in x])
 
 def type_to_str(t):
     t = ensure_tuple_or_str(t)
@@ -130,22 +130,29 @@ class CyclusAgent(Directive):
             self.lines.append(':{0}: {1}'.format(key, val))
         self.lines.append('')
 
-    skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default'}
+    skipstatevar = {'type', 'index', 'shape', 'doc', 'tooltip', 'default', None}
 
     def append_statevars(self):
         vars = OrderedDict(sorted(self.annotations.get('vars', {}).items(), 
-                           key=lambda x: x[1]['index']))
+                           key=lambda x: x[1]['index'] if not isinstance(x[1], STRING_TYPES) else 0))
         if len(vars) == 0:
             return
         lines = self.lines
         lines += ['', '**State Variables:**', '']
         for name, info in vars.items():
+            if isinstance(info, STRING_TYPES):
+                # must be an alias entry - skip it
+                continue
+
+            alias = info.get('alias', name)
+            name = alias if isinstance(alias, STRING_TYPES) else alias[0]
+
             # add name
             n = ":{0}: ``{1}``" .format(name, type_to_str(info['type']))
-            if 'shape' in info:
-                n += ', shape={0}'.format(info['shape'])
             if 'default' in info:
                 n += ', default={0}'.format(info['default'])
+            if 'shape' in info:
+                n += ', shape={0}'.format(info['shape'])
             lines += [n, '']
 
             # add docs
