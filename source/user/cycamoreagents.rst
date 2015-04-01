@@ -7,13 +7,17 @@ cycamore itself.
 
 .. cyclus-agent:: :cycamore:Sink
 
+.. cyclus-agent:: :cycamore:EnrichmentFacility
+
+.. cyclus-agent:: :cycamore:Reactor
+
+.. cyclus-agent:: :cycamore:Separations
+
+.. cyclus-agent:: :cycamore:FuelFab
+
 .. cyclus-agent:: :cycamore:DeployInst
 
 .. cyclus-agent:: :cycamore:ManagerInst
 
 .. cyclus-agent:: :cycamore:GrowthRegion
-
-.. cyclus-agent:: :cycamore:EnrichmentFacility
-
-.. cyclus-agent:: :cycamore:BatchReactor
     :no-sep:
